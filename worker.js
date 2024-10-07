@@ -6,10 +6,17 @@ const fs = require('fs');
 
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
-
+const logo = `${__dirname}/logo.png`
 function convertAndCompress(inputFilePath, outputFilePath, id) {
     return new Promise((resolve, reject) => {
         ffmpeg(inputFilePath)
+            .input(logo)
+            .complexFilter([
+                {
+                    filter: "overlay",
+                    options: { x: 20, y: 'main_h - overlay_h - 20' }
+                }
+            ])
             .videoCodec('libx264')
             .format('mp4')
             .outputOptions('-preset fast')
