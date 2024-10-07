@@ -101,3 +101,9 @@ const run_queue = () => {
     })
 
 }
+
+app.get("/status", (req, res) => {
+    const json_str = fs.readFileSync(`${__dirname}/videos.json`)
+    const json = JSON.parse(json_str.toString())
+    res.json(json)
+})
