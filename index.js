@@ -3,8 +3,12 @@ const bodyParser = require("body-parser")
 const app = express()
 app.use(bodyParser.urlencoded({ limit: "1024mb", extended: true }))
 app.use(bodyParser.json({ extended: true }))
-const http = require("http")
-const server = http.createServer(app)
+const https = require("https")
+const conf = {
+    key: fs.readFileSync("/etc/letsencrypt/live/nutrostyle.nutrosal.com/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/nutrostyle.nutrosal.com/fullchain.pem")
+}
+const server = https.createServer(conf, app)
 server.listen("4010")
 const fs = require("fs")
 const { uid } = require("uid")
