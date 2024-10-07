@@ -10,6 +10,7 @@ const fs = require("fs")
 const { uid } = require("uid")
 const { Worker } = require('worker_threads');
 const multer = require("multer")
+app.use("/videos", express.static("./videos"))
 app.post("/create_folder", (req, res) => {
     const { name } = req.body
     try {
