@@ -56,7 +56,8 @@ app.post("/upload", upload.single("video"), (req, res) => {
         output_path,
         status: "queue",
         percent: 0,
-        name
+        name,
+        folder: folder || "default"
 
     }
     const json_str = fs.readFileSync(`${__dirname}/videos.json`)
