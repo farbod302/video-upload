@@ -19,6 +19,7 @@ server.listen("4010")
 const { uid } = require("uid")
 const { Worker } = require('worker_threads');
 const multer = require("multer")
+const _packages_sessions = require("./packagesMap")
 app.use("/videos", express.static("./videos"))
 app.post("/create_folder", (req, res) => {
     const { name } = req.body
@@ -111,4 +112,20 @@ app.get("/status", (req, res) => {
     const json_str = fs.readFileSync(`${__dirname}/videos.json`)
     const json = JSON.parse(json_str.toString())
     res.json(json)
+})
+
+app.get("/open/:package/:session/:episode", (req, res) => {
+
+    const dest = req.headers["sec-fetch-dest"]
+    const referer = req.headers.referer
+    console.log({ dest, referer });
+    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/"]
+    if (dest !== "video" && !accepted_refs.includes(referer)) {
+        res.send("Access deny")
+        return
+    }
+    const { package, session, episode } = req.params
+    const vid = _packages_sessions[package].videos[session].episodes[episode].url
+    res.redirect(vid)
+
 })
