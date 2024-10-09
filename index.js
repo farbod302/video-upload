@@ -7,6 +7,16 @@ app.use(bodyParser.json({ extended: true }))
 app.use(cors())
 const fs = require("fs")
 
+app.use((req, res, next) => {
+    const referer = req.headers.referer
+    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/"]
+    if (!accepted_refs.includes(referer)) {
+        res.send("access deny")
+        return
+    }
+    next()
+})
+
 const https = require("https")
 // const http = require("http")
 const conf = {
