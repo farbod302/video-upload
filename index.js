@@ -155,5 +155,5 @@ app.delete("/delete/:id", (req, res) => {
     fs.unlinkSync(`${__dirname}/videos/${folder}/${id}.mp4`)
     const new_json = json.filter(e => e.id !== id)
     fs.writeFileSync(`${__dirname}/videos.json`, JSON.stringify(new_json))
-
+    res.json({status:true})
 })
