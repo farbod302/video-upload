@@ -142,7 +142,7 @@ app.get("/open/:package/:session/:episode", (req, res) => {
 app.delete("/delete/:id", (req, res) => {
     const json_str = fs.readFileSync(`${__dirname}/videos.json`)
     const json = JSON.parse(json_str.toString())
-    const id = req.params
+    const {id} = req.params
     const selected = json.find(e => e.id === id)
     if (!selected) {
         res.json({
