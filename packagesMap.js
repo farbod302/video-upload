@@ -112,6 +112,16 @@ const _packages_sessions = {
                         url: "https://nutrostyle.nutrosal.com:4010/videos/face_yoga/10e7d254.mp4"
                     },
                 ]
+            },
+            {
+                session:"Hand",
+                episodes:[
+                    {
+                        name:"Hand",
+                        duration:"14:03",
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/face_yoga/e7d2543e.mp4"
+                    }
+                ]
             }
         ]
     }
