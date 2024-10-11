@@ -128,7 +128,6 @@ app.get("/open/:package/:session/:episode", (req, res) => {
 
     const dest = req.headers["sec-fetch-dest"]
     const referer = req.headers.referer
-    console.log({ dest, referer });
     const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/"]
     if (dest !== "video" && !accepted_refs.includes(referer)) {
         res.send("Access deny")
@@ -137,5 +136,24 @@ app.get("/open/:package/:session/:episode", (req, res) => {
     const { package, session, episode } = req.params
     const vid = _packages_sessions[package].videos[session].episodes[episode].url
     res.redirect(vid)
+
+})
+
+app.delete("/delete/:id", (req, res) => {
+    const json_str = fs.readFileSync(`${__dirname}/videos.json`)
+    const json = JSON.parse(json_str.toString())
+    const id = req.params
+    const selected = json.find(e => e.id === id)
+    if (!selected) {
+        res.json({
+            status: false,
+            msg: "Not Fond"
+        })
+        return
+    }
+    const { folder } = selected
+    fs.unlinkSync(`${__dirname}/videos/${folder}/${id}.mp4`)
+    const new_json = json.filter(e => e.id !== id)
+    fs.writeFileSync(`${__dirname}/videos.json`, JSON.stringify(new_json))
 
 })
