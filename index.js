@@ -9,7 +9,7 @@ const fs = require("fs")
 
 app.use((req, res, next) => {
     const referer = req.headers.referer
-    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/"]
+    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/","https://nutrosalfront.netlify.app/"]
     if (!accepted_refs.includes(referer)) {
         res.send("access deny")
         return
@@ -128,7 +128,7 @@ app.get("/open/:package/:session/:episode", (req, res) => {
 
     const dest = req.headers["sec-fetch-dest"]
     const referer = req.headers.referer
-    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/"]
+    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/","https://nutrosalfront.netlify.app/"]
     if (dest !== "video" && !accepted_refs.includes(referer)) {
         res.send("Access deny")
         return
