@@ -7,6 +7,7 @@ app.use(bodyParser.json({ extended: true }))
 app.use(cors())
 const fs = require("fs")
 const  Blob  = require('fetch-blob');
+const FormData = require('form-data');
 
 app.use((req, res, next) => {
     const referer = req.headers.referer
