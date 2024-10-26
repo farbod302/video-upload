@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({ limit: "1024mb", extended: true }))
 app.use(bodyParser.json({ extended: true }))
 app.use(cors())
 const fs = require("fs")
-const  Blob  = require('fetch-blob');
+const Blob = require('fetch-blob');
 const FormData = require('form-data');
 
 app.use((req, res, next) => {
@@ -162,13 +162,6 @@ app.delete("/delete/:id", (req, res) => {
 })
 
 
-class File extends Blob {
-    constructor(blobParts, fileName, options = {}) {
-      super(blobParts, options);
-      this.name = fileName;
-      this.lastModified = options.lastModified || Date.now();
-    }
-  }
 
 app.post("/motivation", upload.single("video"), (req, res) => {
     const { path } = req.file
@@ -185,10 +178,9 @@ app.post("/motivation", upload.single("video"), (req, res) => {
         } else {
             const output = fs.readFileSync(output_path)
             const blob = new Blob([output])
-            const new_file = new File([blob], `${id}.mp4`)
             console.log({ output, new_file });
             const form_data = new FormData()
-            form_data.append("files", new_file)
+            form_data.append("files", blob, `${id}.mp4`)
             form_data.append("filename", `${id}.mp4`)
             await axios.post(
                 `https://www.nutrosal.com/saveMotivationImage/Nutrosal/${user_id}`,
