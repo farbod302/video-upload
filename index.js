@@ -6,6 +6,7 @@ app.use(bodyParser.urlencoded({ limit: "1024mb", extended: true }))
 app.use(bodyParser.json({ extended: true }))
 app.use(cors())
 const fs = require("fs")
+const { Blob } = require('fetch-blob');
 
 app.use((req, res, next) => {
     const referer = req.headers.referer
@@ -173,8 +174,9 @@ app.post("/motivation", upload.single("video"), (req, res) => {
             res.json({ status: false })
             return
         } else {
-            const output = await fs.openAsBlob(output_path)
-            const new_file = new File([output], `${id}.mp4`)
+            const output = fs.readFileSync(output_path)
+            const blob = new Blob([output])
+            const new_file = new File([blob], `${id}.mp4`)
             console.log({ output, new_file });
             const form_data = new FormData()
             form_data.append("files", new_file)
