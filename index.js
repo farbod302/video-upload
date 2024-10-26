@@ -9,7 +9,7 @@ const fs = require("fs")
 
 app.use((req, res, next) => {
     const referer = req.headers.referer
-    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/","https://nutrosalfront.netlify.app/"]
+    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/", "https://nutrosalfront.netlify.app/"]
     if (!accepted_refs.includes(referer)) {
         res.send("access deny")
         return
@@ -30,6 +30,7 @@ const { uid } = require("uid")
 const { Worker } = require('worker_threads');
 const multer = require("multer")
 const _packages_sessions = require("./packagesMap")
+const { default: axios } = require("axios")
 app.use("/videos", express.static("./videos"))
 app.post("/create_folder", (req, res) => {
     const { name } = req.body
@@ -128,7 +129,7 @@ app.get("/open/:package/:session/:episode", (req, res) => {
 
     const dest = req.headers["sec-fetch-dest"]
     const referer = req.headers.referer
-    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/","https://nutrosalfront.netlify.app/"]
+    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/", "https://nutrosalfront.netlify.app/"]
     if (dest !== "video" && !accepted_refs.includes(referer)) {
         res.send("Access deny")
         return
@@ -142,7 +143,7 @@ app.get("/open/:package/:session/:episode", (req, res) => {
 app.delete("/delete/:id", (req, res) => {
     const json_str = fs.readFileSync(`${__dirname}/videos.json`)
     const json = JSON.parse(json_str.toString())
-    const {id} = req.params
+    const { id } = req.params
     const selected = json.find(e => e.id === id)
     if (!selected) {
         res.json({
@@ -155,5 +156,42 @@ app.delete("/delete/:id", (req, res) => {
     fs.unlinkSync(`${__dirname}/videos/${folder}/${id}.mp4`)
     const new_json = json.filter(e => e.id !== id)
     fs.writeFileSync(`${__dirname}/videos.json`, JSON.stringify(new_json))
-    res.json({status:true})
+    res.json({ status: true })
+})
+
+
+app.post("/motivation", upload.single("video"), (req, res) => {
+    const { path } = req.file
+    console.log(req.file);
+    const { start, end, user_id, token } = req.body
+    const id = uid(6)
+    const output_path = `${__dirname}/motivations/${id}.mp4`
+    const worker = new Worker("./worker_motivation.js", { workerData: { inputFilePath: path, outputFilePath: output_path, start, end } })
+    worker.on("message", async (msg) => {
+        const { status } = msg
+        if (status === "error") {
+            res.json({ status: false })
+            return
+        } else {
+            const output = await fs.openAsBlob(output_path)
+            const new_file = new File([output], `${id}.mp4`)
+            console.log({ output, new_file });
+            const form_data = new FormData()
+            form_data.append("files", new_file)
+            form_data.append("filename", `${id}.mp4`)
+            await axios.post(
+                `https://www.nutrosal.com/saveMotivationImage/Nutrosal/${user_id}`,
+                form_data,
+                {
+                    headers: {
+                        "Authorization": token
+                    }
+                }
+            )
+            res.json({ status: true, name: `${id}.mp4` })
+        }
+
+        return
+    })
+
 })
