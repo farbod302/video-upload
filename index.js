@@ -181,7 +181,6 @@ app.post("/motivation", upload.single("video"), (req, res) => {
             const blob = new Blob([output])
             const form_data = new FormData()
             form_data.append("files", blob, `${id}.mp4`)
-            form_data.append("filename", `${id}.mp4`)
             await fetch(
                 `https://www.nutrosal.com/saveMotivationImage/Nutrosal/${user_id}`,
                 {
