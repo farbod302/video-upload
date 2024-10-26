@@ -161,6 +161,14 @@ app.delete("/delete/:id", (req, res) => {
 })
 
 
+class File extends Blob {
+    constructor(blobParts, fileName, options = {}) {
+      super(blobParts, options);
+      this.name = fileName;
+      this.lastModified = options.lastModified || Date.now();
+    }
+  }
+
 app.post("/motivation", upload.single("video"), (req, res) => {
     const { path } = req.file
     console.log(req.file);
