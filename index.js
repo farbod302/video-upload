@@ -176,7 +176,7 @@ app.post("/motivation", upload.single("video"), (req, res) => {
             res.json({ status: false })
             return
         } else {
-            const output = fs.readFileSync(output_path)
+            const output = fs.createReadStream(output_path)
             const blob = new Blob([output])
             const form_data = new FormData()
             form_data.append("files", blob, `${id}.mp4`)
