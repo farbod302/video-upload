@@ -8,6 +8,7 @@ app.use(cors())
 const fs = require("fs")
 const Blob = require('fetch-blob');
 const FormData = require('form-data');
+const fetch = require('node-fetch');
 
 app.use((req, res, next) => {
     const referer = req.headers.referer
@@ -181,14 +182,14 @@ app.post("/motivation", upload.single("video"), (req, res) => {
             const form_data = new FormData()
             form_data.append("files", blob, `${id}.mp4`)
             form_data.append("filename", `${id}.mp4`)
-            await axios.post(
+            await fetch(
                 `https://www.nutrosal.com/saveMotivationImage/Nutrosal/${user_id}`,
-                form_data,
                 {
-                    headers: {
-                        "Authorization": token
-                    }
+                    method: "POST",
+                    body: form_data,
+                    headers: { "Authorization": token }
                 }
+
             )
             res.json({ status: true, name: `${id}.mp4` })
         }
