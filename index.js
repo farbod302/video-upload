@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({ limit: "1024mb", extended: true }))
 app.use(bodyParser.json({ extended: true }))
 app.use(cors())
 const fs = require("fs")
-const { Blob } = require('fetch-blob');
+const  Blob  = require('fetch-blob');
 
 app.use((req, res, next) => {
     const referer = req.headers.referer
