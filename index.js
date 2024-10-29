@@ -10,9 +10,9 @@ const fs = require("fs")
 
 app.use((req, res, next) => {
     const referer = req.headers.referer
-    console.log({ referer });
     const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/", "https://nutrosalfront.netlify.app/"]
     if (!accepted_refs.includes(referer)) {
+        console.log("deny");
         res.send("access deny")
         return
     }
