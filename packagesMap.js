@@ -56,15 +56,20 @@ const _packages_sessions = {
                         duration: "3:55",
                         url: "https://nutrostyle.nutrosal.com:4010/videos/face_yoga/1a6ee7f9.mp4"
                     },
-                    {
-                        name: "Meditation",
-                        duration: "7:11",
-                        url: "https://nutrostyle.nutrosal.com:4010/videos/face_yoga/a6ee7f9b.mp4"
-                    },
+                    // {
+                    //     name: "Meditation",
+                    //     duration: "7:11",
+                    //     url: "https://nutrostyle.nutrosal.com:4010/videos/face_yoga/a6ee7f9b.mp4"
+                    // },
                     {
                         name: "Lower Face End",
                         duration: "0:28",
                         url: "https://nutrostyle.nutrosal.com:4010/videos/face_yoga/6ee7f9be.mp4"
+                    },
+                    {
+                        name: "Lower Face Summery",
+                        duration: "8:39",
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/English_Video/0526bc8e.mp4"
                     },
                 ]
             },
@@ -106,10 +111,15 @@ const _packages_sessions = {
                         duration: "3:26",
                         url: "https://nutrostyle.nutrosal.com:4010/videos/face_yoga/e10e7d25.mp4"
                     },
+                    // {
+                    //     name: "Meditation",
+                    //     duration: "6:17",
+                    //     url: "https://nutrostyle.nutrosal.com:4010/videos/face_yoga/10e7d254.mp4"
+                    // },
                     {
-                        name: "Meditation",
-                        duration: "6:17",
-                        url: "https://nutrostyle.nutrosal.com:4010/videos/face_yoga/10e7d254.mp4"
+                        name: "Upper Face Summery",
+                        duration: "6:20",
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/face_yoga/c5b40526.mp4"
                     },
                 ]
             },
@@ -120,6 +130,11 @@ const _packages_sessions = {
                         name:"Hand",
                         duration:"14:03",
                         url:"https://nutrostyle.nutrosal.com:4010/videos/face_yoga/e7d2543e.mp4"
+                    },
+                    {
+                        name: "Hand Exercise Summary",
+                        duration: "3:05",
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/English_Video/b40526bc.mp4"
                     }
                 ]
             }
