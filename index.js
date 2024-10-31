@@ -7,7 +7,7 @@ app.use(bodyParser.json({ extended: true }))
 app.use(cors())
 const fs = require("fs")
 
-
+const { CronJob } = require("cron")
 app.use((req, res, next) => {
     const referer = req.headers.referer
     const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/", "https://nutrosalfront.netlify.app/"]
@@ -33,6 +33,7 @@ const { Worker } = require('worker_threads');
 const multer = require("multer")
 const _packages_sessions = require("./packagesMap")
 const { default: axios } = require("axios")
+const moment = require("moment")
 app.use("/videos", express.static("./videos"))
 app.use("/images", express.static("./images"))
 app.post("/create_folder", (req, res) => {
@@ -216,3 +217,19 @@ app.post("/resize_image", upload.single("image"), (req, res) => {
         }
     })
 })
+
+const delete_all_images = () => {
+    const list = fs.readdirSync("./images")
+    for (let img of list) {
+        const image = fs.statSync("./images/" + img)
+        const { atimeMs, size } = image
+        if (!size) continue
+        const def = moment().diff(Math.round(atimeMs), "minutes")
+        if (def > 2) {
+            fs.unlinkSync("./images/" + img)
+        }
+    }
+}
+
+const cron = new CronJob("0 * * * *", delete_all_images)
+cron.start()
