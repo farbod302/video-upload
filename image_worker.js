@@ -23,7 +23,7 @@ const convert = async (path, output_path, type, originalname) => {
     const maxSizeKB = 300
     while (inputBuffer.length / 1024 > maxSizeKB && quality > 10) {
         inputBuffer = await sharp(inputBuffer)
-            .resize({ width: Math.round(1000 * (quality / 20)) }) 
+            .resize({ width: Math.round(1000 * (quality / 40)) }) 
             .jpeg({ quality }) 
             .toBuffer();
 
