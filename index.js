@@ -212,7 +212,7 @@ app.post("/resize_image", upload.single("image"), (req, res) => {
         if (status === "error") {
             res.json({ status: false })
         } else {
-            res.json({ status: true, path: `http://localhost:4010/images/${id}.jpeg` })
+            res.json({ status: true, path: `https://nutrostyle.nutrosal.com:4010/images/${id}.jpeg` })
         }
     })
 })
