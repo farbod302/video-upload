@@ -34,6 +34,7 @@ const multer = require("multer")
 const _packages_sessions = require("./packagesMap")
 const { default: axios } = require("axios")
 app.use("/videos", express.static("./videos"))
+app.use("/images", express.static("./images"))
 app.post("/create_folder", (req, res) => {
     const { name } = req.body
     try {
@@ -196,4 +197,22 @@ app.post("/motivation", upload.single("video"), (req, res) => {
         return
     })
 
+})
+
+
+app.post("/resize_image", upload.single("image"), (req, res) => {
+
+    const { mimetype, path, originalname } = req.file
+    const id = uid(6)
+    const output_path = `${__dirname}/images/${id}.jpeg`
+    const worker = new Worker("./image_worker", { workerData: { path, output_path, type: mimetype, originalname } })
+
+    worker.on("message", (msg) => {
+        const { status } = msg
+        if (status === "error") {
+            res.json({ status: false })
+        } else {
+            res.json({ status: true, path: `http://localhost:4010/images/${id}.jpeg` })
+        }
+    })
 })
