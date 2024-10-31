@@ -7,8 +7,8 @@ const sharp = require('sharp');
 const convert = async (path, output_path, type, originalname) => {
 
     let inputBuffer = await promisify(fs.readFile)(path);
-    console.log({type,originalname});
-    if (type === "image/heic") {
+    
+    if (originalname.indexOf(".HEIC")>-1 || originalname.indexOf(".heic")>-1 ) {
         console.log("convert");
         const converted = await convertToJpeg({
             buffer: inputBuffer,
