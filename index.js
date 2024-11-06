@@ -20,13 +20,17 @@ app.use((req, res, next) => {
 })
 
 const https = require("https")
-// const http = require("http")
 const conf = {
     key: fs.readFileSync("/etc/letsencrypt/live/nutrostyle.nutrosal.com/privkey.pem"),
     cert: fs.readFileSync("/etc/letsencrypt/live/nutrostyle.nutrosal.com/fullchain.pem")
 }
 const server = https.createServer(conf, app)
+
+
+// const http = require("http")
 // const server = http.createServer(app)
+
+
 server.listen("4010")
 const { uid } = require("uid")
 const { Worker } = require('worker_threads');

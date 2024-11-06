@@ -3,13 +3,11 @@ const convertToJpeg = require('heic-convert');
 const { parentPort, workerData } = require('worker_threads');
 const { promisify } = require('util');
 const sharp = require('sharp');
-
 const convert = async (path, output_path, type, originalname) => {
 
     let inputBuffer = await promisify(fs.readFile)(path);
-    
-    if (originalname.indexOf(".HEIC")>-1 || originalname.indexOf(".heic")>-1 ) {
-        console.log("convert");
+
+    if (originalname.indexOf(".HEIC") > -1 || originalname.indexOf(".heic") > -1) {
         const converted = await convertToJpeg({
             buffer: inputBuffer,
             format: "JPEG",
@@ -23,11 +21,12 @@ const convert = async (path, output_path, type, originalname) => {
     const maxSizeKB = 300
     while (inputBuffer.length / 1024 > maxSizeKB && quality > 10) {
         inputBuffer = await sharp(inputBuffer)
-            .resize({ width: Math.round(1000 * (quality / 40)) }) 
-            .jpeg({ quality }) 
+            .rotate()
+            .resize({ width: Math.round(1000 * (quality / 40)) })
+            .jpeg({ quality })
             .toBuffer();
 
-        quality -= 5; 
+        quality -= 5;
     }
     fs.writeFileSync(output_path, inputBuffer);
 
