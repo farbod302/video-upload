@@ -131,14 +131,21 @@ app.get("/status", (req, res) => {
     const json_str = fs.readFileSync(`${__dirname}/videos.json`)
     const json = JSON.parse(json_str.toString())
     const with_size = json.map(e => {
-        const file = fs.statSync(e.output_path)
-        const { size } = file
-        let true_size
-        if (size > 1024 ** 2) true_size = (size / (1024 ** 2)).toFixed(2) + " MB"
-        else true_size = (size / (1024 ** 1)).toFixed(2) + " KB"
-        return {
-            ...e,
-            size: true_size
+        try {
+            const file = fs.statSync(e.output_path)
+            const { size } = file
+            let true_size
+            if (size > 1024 ** 2) true_size = (size / (1024 ** 2)).toFixed(2) + " MB"
+            else true_size = (size / (1024 ** 1)).toFixed(2) + " KB"
+            return {
+                ...e,
+                size: true_size
+            }
+        } catch {
+            return {
+                ...e,
+                size: "progressing"
+            }
         }
     })
     res.json(with_size)
