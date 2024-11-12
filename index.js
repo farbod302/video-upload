@@ -159,6 +159,41 @@ app.get("/open/:package/:session/:episode", (req, res) => {
 
 })
 
+app.get("/resize_again/:id", (req, res) => {
+    const json_str = fs.readFileSync(`${__dirname}/videos.json`)
+    const json = JSON.parse(json_str.toString())
+    const { id } = req.params
+    const video = json.find(e => e.id === id)
+    if (!video) {
+        res.json({
+            status: false,
+            err: "cant find video"
+        })
+        return
+    }
+    //move file to temp
+    const { output_path } = video
+    fs.renameSync(output_path, `./temp/${id}.mp4`)
+    const worker = new Worker("./worker.js", { workerData: { inputFilePath: `./temp/${id}.mp4`, outputFilePath: output_path, id } })
+    worker.on("message", async (msg) => {
+        const { status } = msg
+        if (status === "error") {
+            fs.renameSync(`./temp/${id}.mp4`, output_path)
+            res.json({
+                status: false,
+                msg: "resize failed"
+            })
+            return
+        } else {
+            res.json({
+                status: true,
+                msg: "resized"
+            })
+        }
+    })
+
+})
+
 app.delete("/delete/:id", (req, res) => {
     const json_str = fs.readFileSync(`${__dirname}/videos.json`)
     const json = JSON.parse(json_str.toString())
