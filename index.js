@@ -10,7 +10,7 @@ const fs = require("fs")
 const { CronJob } = require("cron")
 app.use((req, res, next) => {
     const referer = req.headers.referer
-    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/", "https://nutrosalfront.netlify.app/","https://nutrosal.com/"]
+    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/", "https://nutrosalfront.netlify.app/","https://nutrosal.com/","https://www.nutrosal.com/"]
     if (!accepted_refs.includes(referer)) {
         console.log("deny");
         res.send("access deny")
