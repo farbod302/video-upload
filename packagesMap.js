@@ -149,8 +149,8 @@ const _packages_sessions = {
                 episodes: [
                     {
                         name: "1-Intro",
-                        duration: "",
-                        url:""
+                        duration: "2:13",
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/English_Video/99da0828.mp4"
                     },
                     {
                         name: "2-Squat",
