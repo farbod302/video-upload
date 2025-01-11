@@ -257,7 +257,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:""
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/English_Video/3c6744d2.mp4"
                     },
 
                 ]
@@ -275,15 +275,16 @@ const _packages_sessions = {
                         duration: "1:24",
                         url:"https://nutrostyle.nutrosal.com:4010/videos/workout/8c42c405.mp4"
                     },
+                   
                     {
-                        name: "3-Tricep Extension",
-                        duration: "2:14",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/c42c405f.mp4"
+                        name: "3-Kick back",
+                        duration: "1:40",
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/English_Video/cedd71f7.mp4"
                     },
                     {
-                        name: "4-",
-                        duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/2c405f35.mp4"
+                        name: "4-Tricep Extension",
+                        duration: "2:14",
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/42c405f3.mp4"
                     },
                     {
                         name: "5-Halo",
@@ -293,7 +294,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:""
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/edd71f7f.mp4"
                     },
 
                 ]
@@ -359,7 +360,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:""
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/c6744d2a.mp4"
                     },
 
 
