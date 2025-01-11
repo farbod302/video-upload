@@ -294,7 +294,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/edd71f7f.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/03c6744d.mp4"
                     },
 
                 ]
