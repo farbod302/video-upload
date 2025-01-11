@@ -200,7 +200,7 @@ const _packages_sessions = {
                     {
                         name: "20 min full body",
                         duration: "18:18",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/English_Video/53b467a0.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/03c6744d.mp4"
                     },
 
                 ]
@@ -294,7 +294,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/03c6744d.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/edd71f7f.mp4"
                     },
 
                 ]
