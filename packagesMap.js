@@ -200,7 +200,7 @@ const _packages_sessions = {
                     {
                         name: "20 min full body",
                         duration: "18:18",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/03c6744d.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/49fdca1f.mp4"
                     },
 
                 ]
@@ -257,7 +257,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/English_Video/3c6744d2.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/fdca1f4f.mp4"
                     },
 
                 ]
@@ -294,7 +294,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/edd71f7f.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/9fdca1f4.mp4"
                     },
 
                 ]
@@ -360,7 +360,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/c6744d2a.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/dca1f4f3.mp4"
                     },
 
 
