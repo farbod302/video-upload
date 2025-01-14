@@ -150,7 +150,7 @@ const _packages_sessions = {
                     {
                         name: "1-Intro",
                         duration: "2:13",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/English_Video/99da0828.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/ddf5747c.mp4"
                     },
                     {
                         name: "2-Squat",
