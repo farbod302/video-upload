@@ -200,7 +200,7 @@ const _packages_sessions = {
                     {
                         name: "20 min full body",
                         duration: "18:18",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/49fdca1f.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/e2b0b002.mp4"
                     },
 
                 ]
@@ -257,7 +257,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/fdca1f4f.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/2d738f11.mp4"
                     },
 
                 ]
@@ -273,7 +273,7 @@ const _packages_sessions = {
                     {
                         name: "2-Step up",
                         duration: "1:24",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/8c42c405.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/02d738f1.mp4"
                     },
                    
                     {
@@ -294,7 +294,7 @@ const _packages_sessions = {
                     {
                         name: "Main",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/9fdca1f4.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/2b0b002d.mp4"
                     },
 
                 ]
@@ -305,7 +305,7 @@ const _packages_sessions = {
                     {
                         name: "Intro",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/c405f353.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/b0b002d7.mp4"
                     },
                     {
                         name: "1-Side walk",
@@ -320,7 +320,7 @@ const _packages_sessions = {
                     {
                         name: "3-Squat",
                         duration: "",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/5f353a72.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/002d738f.mp4"
                     },
                     {
                         name: "4-Jumping jack",
@@ -330,7 +330,7 @@ const _packages_sessions = {
                     {
                         name: "5-Chest press",
                         duration: "1:44",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/353a72a5.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/b002d738.mp4"
                     },
                     {
                         name: "6-Pulse",
@@ -345,7 +345,7 @@ const _packages_sessions = {
                     {
                         name: "8-Knee raise crunch",
                         duration: "1:00",
-                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/a72a5b2b.mp4"
+                        url:"https://nutrostyle.nutrosal.com:4010/videos/workout/0b002d73.mp4"
                     },
                     {
                         name: "9-Leg lift",
