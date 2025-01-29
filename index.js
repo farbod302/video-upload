@@ -241,7 +241,7 @@ app.post("/motivation", upload.single("video"), (req, res) => {
             form_data.append("files", file, `${id}.mp4`)
             form_data.append("filename", `${id}.mp4`)
             await axios.post(
-                `https://www.nutrosal.com/saveMotivationImage/Nutrosal/${user_id}`,
+                `https://backend.nutrosal.com/saveMotivationImage/Nutrosal/${user_id}`,
                 form_data,
                 {
 
