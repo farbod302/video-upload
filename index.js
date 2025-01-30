@@ -10,7 +10,7 @@ const fs = require("fs")
 const { CronJob } = require("cron")
 app.use((req, res, next) => {
     const referer = req.headers.referer
-    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/", "https://nutrosalfront.netlify.app/","https://nutrosal.com/","https://www.nutrosal.com/"]
+    const accepted_refs = ["http://localhost:5173/", "https://style.nutrosal.com/", "https://nutrosalfront.netlify.app/", "https://nutrosal.com/", "https://www.nutrosal.com/"]
     if (!accepted_refs.includes(referer)) {
         console.log("deny");
         res.send("access deny")
@@ -89,7 +89,7 @@ app.post("/upload", upload.single("video"), (req, res) => {
     json.push(to_add)
     fs.writeFileSync(`${__dirname}/videos.json`, JSON.stringify(json))
     run_queue()
-    res.json({ status: true, msg: "Added to queue" })
+    res.json({ status: true, msg: "Added to queue", url: `https://nutrostyle.nutrosal.com:4010/videos/${folder || "default"}/${id}.mp4` })
 
 })
 
