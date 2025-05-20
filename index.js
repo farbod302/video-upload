@@ -231,6 +231,7 @@ app.post("/motivation", upload.single("video"), (req, res) => {
         const { status } = msg
         if (status === "error") {
             res.json({ status: false })
+            console.log({msg});
             return
         } else {
             const output = await fs.openAsBlob(output_path)
