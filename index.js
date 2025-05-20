@@ -224,7 +224,6 @@ app.delete("/delete/:id", (req, res) => {
 
 app.post("/motivation", upload.single("video"), (req, res) => {
     const { path } = req.file
-    console.log(req.file);
     const { start, end, user_id, token } = req.body
     const id = uid(6)
     const output_path = `${__dirname}/motivations/${id}.mp4`
