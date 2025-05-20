@@ -25,6 +25,7 @@ function convertAndCompress(inputFilePath, outputFilePath, start, end, id) {
                 resolve(outputFilePath);
             })
             .on("progress",(e)=>{
+                console.log({e});
                 const json_raw = fs.readFileSync("./progress.json")
                 const json_string = json_raw.toString()
                 const json = JSON.parse(json_string)
