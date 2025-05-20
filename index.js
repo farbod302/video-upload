@@ -227,7 +227,7 @@ app.post("/motivation", upload.single("video"), (req, res) => {
     const { start, end, user_id, token } = req.body
     const id = uid(6)
     const output_path = `${__dirname}/motivations/${id}.mp4`
-    const worker = new Worker("./worker_motivation.js", { workerData: { inputFilePath: path, outputFilePath: output_path, start, end } })
+    const worker = new Worker("./worker_motivation.js", { workerData: { inputFilePath: path, outputFilePath: output_path, start, end, id } })
     worker.on("message", async (msg) => {
         const { status } = msg
         if (status === "error") {
@@ -256,6 +256,15 @@ app.post("/motivation", upload.single("video"), (req, res) => {
 
 })
 
+
+app.get("/upload_progress/:id", (req, res) => {
+    const { id } = req.params
+    const json_raw = fs.readFileSync("./progress.json")
+    const json_string = json_raw.toString()
+    const json = JSON.parse(json_string)
+    const selected = json[id]
+    res.json(selected || 0)
+})
 
 app.post("/resize_image", upload.single("image"), (req, res) => {
 

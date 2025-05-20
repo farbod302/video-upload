@@ -6,8 +6,14 @@ const fs = require('fs');
 
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
-function convertAndCompress(inputFilePath, outputFilePath, start, end) {
+const fs = require("fs")
+function convertAndCompress(inputFilePath, outputFilePath, start, end, id) {
     return new Promise((resolve, reject) => {
+        const json_raw = fs.readFileSync("./progress.json")
+        const json_string = json_raw.toString()
+        const json = JSON.parse(json_string)
+        json[id] = e.percent
+        fs.writeFileSync("./progress.json", JSON.stringify(json))
         ffmpeg(inputFilePath)
             .setStartTime(+start)
             .setDuration(+end - +start)
@@ -18,6 +24,13 @@ function convertAndCompress(inputFilePath, outputFilePath, start, end) {
             .on('end', () => {
                 resolve(outputFilePath);
             })
+            .on("progress",(e)=>{
+                const json_raw = fs.readFileSync("./progress.json")
+                const json_string = json_raw.toString()
+                const json = JSON.parse(json_string)
+                json[id] = e.percent
+                fs.writeFileSync("./progress.json", JSON.stringify(json))
+            })
             .on('error', (err) => {
                 reject(err);
             })
@@ -27,7 +40,7 @@ function convertAndCompress(inputFilePath, outputFilePath, start, end) {
 
 (async () => {
     try {
-        await convertAndCompress(workerData.inputFilePath, workerData.outputFilePath, workerData.start, workerData.end);
+        await convertAndCompress(workerData.inputFilePath, workerData.outputFilePath, workerData.start, workerData.end, workerData.id);
         parentPort.postMessage({ status: 'done', outputFilePath: workerData.outputFilePath });
     } catch (err) {
         parentPort.postMessage({ status: 'error', message: err.message });
