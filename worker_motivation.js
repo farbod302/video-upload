@@ -33,6 +33,7 @@ function convertAndCompress(inputFilePath, outputFilePath, start, end, id) {
                 fs.writeFileSync("./progress.json", JSON.stringify(json))
             })
             .on('error', (err) => {
+                console.log(err);
                 reject(err);
             })
             .save(outputFilePath);
