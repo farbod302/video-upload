@@ -23,15 +23,7 @@ function convertAndCompress(inputFilePath, outputFilePath, start, end, id) {
             .on('end', () => {
                 resolve(outputFilePath);
             })
-            .on("progress",(e)=>{
-                console.log({e});
-                const json_raw = fs.readFileSync("./progress.json")
-                const json_string = json_raw.toString()
-                const json = JSON.parse(json_string)
-                json[id] = e.percent
-                console.log(e.percent);
-                fs.writeFileSync("./progress.json", JSON.stringify(json))
-            })
+            
             .on('error', (err) => {
                 reject(err);
             })
