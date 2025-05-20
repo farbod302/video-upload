@@ -6,7 +6,6 @@ const fs = require('fs');
 
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
-const fs = require("fs")
 function convertAndCompress(inputFilePath, outputFilePath, start, end, id) {
     return new Promise((resolve, reject) => {
         const json_raw = fs.readFileSync("./progress.json")
