@@ -224,8 +224,7 @@ app.delete("/delete/:id", (req, res) => {
 
 app.post("/motivation", upload.single("video"), (req, res) => {
     const { path } = req.file
-    const { start, end, user_id, token } = req.body
-    const id = uid(6)
+    const { start, end, user_id, token ,id} = req.body
     const output_path = `${__dirname}/motivations/${id}.mp4`
     const worker = new Worker("./worker_motivation.js", { workerData: { inputFilePath: path, outputFilePath: output_path, start, end, id } })
     worker.on("message", async (msg) => {
@@ -248,7 +247,7 @@ app.post("/motivation", upload.single("video"), (req, res) => {
                 }
 
             )
-            res.json({ status: true, name: `${id}.mp4`,id })
+            res.json({ status: true, name: `${id}.mp4` })
         }
 
         return
