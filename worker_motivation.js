@@ -7,12 +7,11 @@ const fs = require('fs');
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
 function convertAndCompress(inputFilePath, outputFilePath, start, end, id) {
-    console.log({id});
     return new Promise((resolve, reject) => {
         const json_raw = fs.readFileSync("./progress.json")
         const json_string = json_raw.toString()
         const json = JSON.parse(json_string)
-        json[id] = e.percent
+        json[id] = 0
         fs.writeFileSync("./progress.json", JSON.stringify(json))
         ffmpeg(inputFilePath)
             .setStartTime(+start)
@@ -34,7 +33,6 @@ function convertAndCompress(inputFilePath, outputFilePath, start, end, id) {
                 fs.writeFileSync("./progress.json", JSON.stringify(json))
             })
             .on('error', (err) => {
-                console.log(err);
                 reject(err);
             })
             .save(outputFilePath);

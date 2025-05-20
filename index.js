@@ -262,7 +262,6 @@ app.get("/upload_progress/:id", (req, res) => {
     const json_raw = fs.readFileSync("./progress.json")
     const json_string = json_raw.toString()
     const json = JSON.parse(json_string)
-    console.log({json});
     const selected = json[id]
     res.json(selected || 0)
 })
